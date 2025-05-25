@@ -63,7 +63,7 @@ userSchema.static("matchPassword", async function(email, password){
     if(hashedPassword !== userProvidedHash){
         throw new Error('Incorrect password');
     }
-    return {...user, password: undefined, salt: undefined};
+    return user;
 });
 
 const User = model('user', userSchema);
