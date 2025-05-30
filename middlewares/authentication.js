@@ -9,8 +9,6 @@ function checkForAuthenticationCookie(cookieName){
 
         try {
             const userPayload = validateToken(tokenCookieValue);
-            // const user = await user.findById(userPayload._id); // ✅ fetch full user
-            // req.user = user; // ✅ Now user has fullName, email, etc.
             req.user = userPayload;
         } catch (error) {}
         return next();

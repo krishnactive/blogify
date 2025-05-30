@@ -1,31 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('./partials/head') %>
-    <title>Signup</title>
+  <%- include('./partials/head') %>
+  <title>Sign Up - Blogify</title>
 </head>
 <body>
-    <%- include('./partials/nav') %>
+  <%- include('./partials/nav') %>
 
-    <div class="container mt-4">
-        <form action="/user/signup" method="post">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullName">
-                
-            </div>
-            <div class="container mt-4 mb-4">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow rounded">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Create Your Account</h3>
+
+            <% if (locals.error) { %>
+              <div class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+            <% } %>
+
+            <form action="/user/signup" method="POST" novalidate>
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" name="fullName" class="form-control" id="fullName" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="email" required>
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" required>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success">Sign Up</button>
+              </div>
+            </form>
+
+            <div class="text-center mt-3">
+              <p class="mb-0">Already have an account? <a href="/user/signin">Sign in</a></p>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+
+          </div>
+        </div>
+      </div>
     </div>
-    <%- include('./partials/scripts') %>
+  </div>
+
+  <%- include('./partials/scripts') %>
 </body>
 </html>
